@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Currency Exchange</h2>
+
+    <form method = "POST" th:action="@{/currencies/result}">
+
+
+        <label>From:</label>
+        <select name="fromselectedcurrency">
+            <option th:each="currency : ${currencies}" 
+            th:value="${currency.currencyId}" 
+            th:text="${currency.currencyName} + '  ' + ${currency.currencySymbol}"
+            > </option>
+        </select>
+        <br>
+        <br>
+
+        <label>To:</label>
+        <select name="toselectedcurrency">
+            <option th:each="currency : ${currencies}" 
+            th:value="${currency.currencyId}" 
+            th:text="${currency.currencyName} + '  ' + ${currency.currencySymbol}"
+            > </option>
+        </select>
+        <br>
+        <br>
+
+        <Label>Amount:</Label>
+        <input type = "number" name ="amounttoconvert" min="1" required>
+        <br>
+        <br>
+        
+        
+        <input type = "submit" value = "Convert">
+
+    <div th:if="${currencyRate != null}">
+        <h2>Conversion</h2>
+        <p th:text="'Conversion rate: ' + ${currencyRate}"></p>
+        <br>
+        <p th:text="${fromCurrency.currencyName}"></p>
+        <p th:text="${fromCurrency.currencySymbol} + ' '+ ${amount}"></p>
+        <br>
+        <p th:text="${toCurrency.currencyName}"></p>
+        <p th:text="${toCurrency.currencySymbol} + ' '+ ${convertedamount}"></p>
+    </div>
+
+        
+
+
+    </form>
+</body>
+</html>
