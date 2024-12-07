@@ -9,26 +9,24 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import sg.edu.nus.iss.workshop7.model.Currency;
 import sg.edu.nus.iss.workshop7.service.CurrencyService;
 
 @Controller
-@RequestMapping("/currencies")
+
 public class CurrencyController {
     @Autowired
     CurrencyService currencyService;
+    //assume apikey is hidden, and i only gave it at the requestparam
+    // @GetMapping("")
+    // @ResponseBody
+    // public List<Currency> getCurrencies(@RequestParam("apiKey") String apiKey2) {
+    //     List<Currency> currencies = currencyService.getCurrencies2(apiKey2);
+    //     return currencies;
 
-    @GetMapping("")
-    @ResponseBody
-    public List<Currency> getCurrencies() {
-        List<Currency> currencies = currencyService.getCurrencies();
-        return currencies;
-
-    }
-    @GetMapping("/convert")
+    // }
+    @GetMapping("/")
     public String getIndexPage(Model model) {
         List<Currency> currencies = currencyService.getCurrencies();
         model.addAttribute("currencies",currencies);
